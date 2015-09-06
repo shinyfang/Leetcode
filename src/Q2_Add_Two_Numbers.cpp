@@ -9,8 +9,8 @@ class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     	ListNode *out = new ListNode(0);
-    	ListNode *head = out;
-    	int flag = 0;
+    	ListNode *head = out;//head指向头指针
+    	int flag = 0;//标记是否进位
     	while(l1 != NULL || l2 != NULL){
     		if(l1 == NULL && l2 != NULL){
     			out->next = new ListNode((l2->val+flag)%10);
@@ -41,12 +41,13 @@ public:
     			l2 = l2->next;
     		}
     	}
+    	//考虑此时仍需进位的情况
     	if(flag == 1)
     		out->next = new ListNode(1);
     	return head->next;
     }
 };
-int main(){
+/**int main(){
 	ListNode *l1 = new ListNode(5);
 	//l1->next = new ListNode(8);
 	//l1->next->next = new ListNode(3);
@@ -58,3 +59,4 @@ int main(){
 	cout<<out->val<<out->next->val;
 	return 0;
 }
+**/
