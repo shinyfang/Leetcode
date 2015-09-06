@@ -6,7 +6,7 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
     	vector<int> out;
-    	map<int,int> map;
+    	map<int,int> map;//map记录索引，从1开始，重复取大
     	for(int i=0;i<nums.size();i++){
     		map[nums[i]] = i+1;
     	}
