@@ -40,10 +40,11 @@ public:
         return (flag==1)?(0-result):result;
     }
 };
-int main(){
+/*int main(){
 	string str = "  -23fwdfg";
 	Solution s;
 	int i = s.myAtoi(str);
 	cout<<i;
 	return 0;
 }
+*/
