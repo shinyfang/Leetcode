@@ -27,7 +27,7 @@ public:
     	return s.substr(0,len);
     }
 };
-int main(){
+/**int main(){
 	Solution s;
 	vector<string> strs;
 	//strs.push_back("abcskfaf");
@@ -35,3 +35,4 @@ int main(){
 	cout<<s.longestCommonPrefix(strs);
 	return 0;
 }
+**/
