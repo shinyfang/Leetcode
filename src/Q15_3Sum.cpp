@@ -8,18 +8,18 @@ public:
     	vector<vector<int> > result;
     	sort(nums.begin(),nums.end());
     	for(int i=0;i<nums.size();i++){
-    		if ( i>0 && nums[i] == nums[i-1])
+    		if ( i>0 && nums[i] == nums[i-1])//选nums[i]时要去重
     			continue;
     		int a1 = nums[i];
     		cout<<"a1="<<a1<<endl;
     		int target = 0 - a1;
     		cout<<"target="<<target<<endl;
     		for(int l = i + 1, r = nums.size()-1; l < r;){
-    			while (l>i+1 && nums[l]==nums[l-1])
+    			while (l>i+1 && nums[l]==nums[l-1])//选nums[l]要去重
     				l++;
     			if (l>=r)
     				break;
-    			while (r<nums.size()-1 && nums[r]==nums[r+1])
+    			while (r<nums.size()-1 && nums[r]==nums[r+1])//选nums[r]要去重
     				r--;
     			if (r<=l)
     				break;
@@ -42,7 +42,7 @@ public:
     	return result;
     }
 };
-int main(){
+/**int main(){
 	Solution s;
 	vector<int> nums;
 	int n1 = -5;
@@ -68,3 +68,4 @@ int main(){
 	}
 	return 0;
 }
+**/
