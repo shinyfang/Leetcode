@@ -38,7 +38,7 @@ public:
     	return result;
     }
 };
-int main(){
+/**int main(){
 	Solution s;
 	ListNode* head = new ListNode(1);
 	//head->next = new ListNode(2);
@@ -50,3 +50,4 @@ int main(){
 	cout<<result->val<<" "<<result->next->val<<" "<<result->next->next->val<<" "<<result->next->next->next->val<<endl;
 	return 0;
 }
+**/
