@@ -33,7 +33,7 @@ public:
     	return result;
     }
 };
-int main(){
+/**int main(){
 	Solution s;
 	int n = 3;
 	vector<string> result = s.generateParenthesis(n);
@@ -46,3 +46,4 @@ int main(){
 	}
 	return 0;
 }
+**/

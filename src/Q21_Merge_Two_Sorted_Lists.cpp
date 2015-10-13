@@ -5,7 +5,9 @@ struct ListNode {
 	ListNode *next;
 	ListNode(int x) : val(x), next(NULL) {}
 };
-class Solution {
+/**
+ *开始没想新开辟一个链表，但是这样就有点复杂了
+ * class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
     	if (l1 == NULL)
@@ -60,6 +62,42 @@ public:
     			}
     		}
     	}
+    }
+};**/
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+    	if (l1 == NULL)
+    		return l2;
+    	if (l2 == NULL)
+    		return l1;
+    	ListNode* result = new ListNode(-1);
+    	ListNode* p = result;//p指向结果链表目前收集的节点处
+    	while(l1 != NULL || l2 != NULL){
+    		if (l1 == NULL)
+    		{
+    			p->next = l2;
+    			return result->next;
+    		}
+    		if (l2 == NULL)
+    		{
+    			p->next = l1;
+    			return result->next;
+    		}
+    		if (l1->val <= l2->val)
+    		{
+    			p->next = l1;
+    			p = p->next;
+    			l1 = l1->next;
+    		}
+    		else
+    		{
+    			p->next = l2;
+    			p = p->next;
+    			l2 = l2->next;
+    		}
+    	}
+    	return result->next;
     }
 };
 /**int main(){
