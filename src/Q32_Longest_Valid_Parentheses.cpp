@@ -11,7 +11,9 @@ public:
     		return 0;
     	bool *flag = new bool[len];//申请长为len的数组，来存储这个数是否构成了匹配的符号
     	memset(flag,false,len);//初始化都为false
-    	stack<int> stk;//stack里面存的是可能配对的符号的index，之所以这样是因为如果直接存入符号在找与）匹配的（中会出现很难找（序号的情况
+    	stack<int> stk;
+    	//stack里面存的是可能配对的符号的index，
+    	//之所以这样是因为如果直接存入符号在找与）匹配的（中会出现很难找（序号的情况
     	int i = 0;
     	while (i < len)
     	{
