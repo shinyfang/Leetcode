@@ -4,7 +4,7 @@
 using namespace std;
 class Solution {
 public:
-    bool isValidSudoku(vector<vector<char>>& board) {
+    bool isValidSudoku(vector<vector<char > >& board) {
     	//board的vector中存了9行，每行存了9个数
     	//判断每行是否满足
     	int a[9];
