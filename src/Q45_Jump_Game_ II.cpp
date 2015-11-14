@@ -30,26 +30,22 @@ public:
 class Solution {
 public:
     int jump(vector<int>& nums) {
-    	if (nums.size() == 0 || nums.size() == 1)
-    		return 0;
-    	int end = nums.size()-1;
-    	int len = 0;
-    	while(end > 0)
+    	int step = 0;
+    	int current = 0;
+    	int next = 0;
+    	for (int i = 0; i < nums.size(); i++)
     	{
-    		for (int i = 0; i < end; i++)
+    		if (i > current)
     		{
-    			if (i + nums[i] >= end)
-    			{
-    				len++;
-    				end = i;
-    				break;
-    			}
+    			step++;
+    			current = next;
     		}
+    		next = (i+nums[i]>next)?(i+nums[i]):next;
     	}
-    	return len;
+    	return step;
     }
 };
-/**int main(){
+int main(){
 	vector<int> nums;
 	nums.push_back(1);
 	nums.push_back(1);
@@ -60,4 +56,3 @@ public:
 	cout<<s.jump(nums);
 	return 0;
 }
-**/
