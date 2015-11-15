@@ -37,15 +37,18 @@ public:
     	{
     		if (i > current)
     		{
+    			//<current范围内的格子step步就能走到，<current格子只有再走一步
     			step++;
     			current = next;
     		}
     		next = (i+nums[i]>next)?(i+nums[i]):next;
+    		//每次都要更新能走的最远距离
+
     	}
     	return step;
     }
 };
-int main(){
+/**int main(){
 	vector<int> nums;
 	nums.push_back(1);
 	nums.push_back(1);
@@ -56,3 +59,4 @@ int main(){
 	cout<<s.jump(nums);
 	return 0;
 }
+**/
