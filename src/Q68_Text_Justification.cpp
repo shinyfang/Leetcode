@@ -5,54 +5,81 @@ class Solution {
 public:
     vector<string> fullJustify(vector<string>& words, int maxWidth) {
     	vector<string> result;
-    	int len = result[0].length(); //占据多少长度
-    	int start = 0;//从第start开始计数
-    	int num = 1; //已经存了几个数
-    	for (int i = 0; i < words.size(); i++)
+    	int begin = 0;
+    	int len = 0;
+    	int i = 0;
+    	while (i < words.size())
     	{
-    		if (len+1+words[i].length() > maxWidth)
+    		len = (i == begin?(len+words[i].length()):(len+1+words[i].length()));;
+    		if (len > maxWidth)
     		{
-    			int length = len - (num-1);
-    			int gap;
-    			if ((maxWidth-length)%(num-1) == 0)
+    			len -= (1+words[i].length());
+    			int gap = (i-begin-1 > 0)?(maxWidth-len)/(i-begin-1):0;
+    			int overgap = (i-begin-1 > 0)?(maxWidth-len)%(i-begin-1):(maxWidth-len);
+    			string temp;
+    			for (int j = begin; j < i; j++)
     			{
-    				gap = (maxWidth-length)/(num-1);
-    				string temp;
-    				string gapgap(gap,' ');
-    				for (int j = start; j < i; j++)
+    				if (j == begin)
+    					temp = words[j];
+    				else
     				{
-    					if (j == start)
-    						temp.append(words[j]);
-    					else
-    						temp.append(gapgap+words[j]);
-    				}
-    				start = i;
-    				num = 1;
-    				len = words[i].length();
-    				continue;
-    			}
-    			else
-    			{
-    				gap = (maxWidth-length)/(num-1);
-    				int over = maxWidth-gap*(num-1);
-    				int re = (num-1);
-    				while (over != 0)
-    				{
-
+    					temp += ' ';
+    					for (int k = 0; k < gap; k++)
+    						temp += ' ';
+    					if (overgap > 0)
+    					{
+    						temp += ' ';
+    						overgap--;
+    					}
+    					temp += words[j];
     				}
     			}
+    			//考虑这行只有一个数，则进入不了上面的else循环
+    			for (int k = 0; k < overgap; k++)
+    				temp += ' ';
+    			result.push_back(temp);
+    			len = 0;
+    			begin = i;
     		}
     		else
     		{
-    			len += (words[i].length()+1);
-    			num++;
+    			if (i != words.size()-1)
+    				i++;
+    			else
+    			{
+    				string temp;
+    				//如果到最后一个数都没有超过L，则为最后一行
+    				for (int j = begin; j <= i; j++)
+    				{
+    					if (j == begin)
+    						temp = words[j];
+    					else
+    					{
+    						temp += ' ';
+    						temp += words[j];
+    					}
+    				}
+    				for (int k = 0; k < maxWidth-len; k++)
+    				    temp += ' ';
+    				result.push_back(temp);
+    				break;
+    			}
     		}
     	}
+    	return result;
     }
 };
 /**int main(){
 	vector<string> words;
-	int maxWidth;
+	//string temp = "";
+	words.push_back("What");
+	words.push_back("must");
+	words.push_back("be");
+	words.push_back("shall");
+	words.push_back("be.");
+	//words.push_back("text");
+	//words.push_back("justification");
+	int maxWidth = 12;
 	Solution s;
 	vector<string> result = s.fullJustify(words,maxWidth);
 	for (int i = 0; i < result.size(); i++)
