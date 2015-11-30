@@ -2,7 +2,7 @@
 #include<algorithm>
 #include<vector>
 using namespace std;
-class Solution {
+/**class Solution {
 public:
     vector<vector<int> > subsets(vector<int>& nums) {
     	vector<vector<int> > result;
@@ -50,6 +50,40 @@ public:
     		}
     		return result;
     	}
+};
+**/
+class Solution {
+public:
+    vector<vector<int> > subsets(vector<int>& nums) {
+    	vector<vector<int> > result;
+    	vector<int> temp;
+    	result.push_back(temp);
+    	if (nums.size() == 0)
+    		return result;
+    	sort(nums.begin(),nums.end());
+    	for (int i = 1; i <= nums.size(); i++)
+    	{
+    		vector<vector<int> > temp1;
+    		vector<int> temp2;
+    		combine(temp1,temp2,nums,i,0);
+    		for (int j = 0; j < temp1.size(); j++)
+    			result.push_back(temp1[j]);
+    	}
+    }
+    void combine (vector<vector<int> >& result, vector<int>& res, vector<int> nums, int k, int start)
+    {
+    	if (res.size() == k)
+    	{
+    		result.push_back(res);
+    		return;
+    	}
+    	for (int i = start; i < nums.size(); i++)
+    	{
+    		res.push_back(nums[i]);
+    		combine(result,res,nums,k,i+1);
+    		res.pop_back();
+    	}
+    }
 };
 /**int main(){
 	vector<int> nums;
