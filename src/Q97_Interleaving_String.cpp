@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 #include<string>
 using namespace std;
 /**
@@ -54,15 +55,42 @@ public:
 class Solution {
 public:
     bool isInterleave(string s1, string s2, string s3) {
-
+    	//二维动态规划
+    	if (s1.length() + s2.length() != s3.length())
+    		return false;
+    	int m = s1.length();
+    	int n = s2.length();
+    	vector<vector<bool> > flag(m+1,vector<bool>(n+1,false));
+    	for (int i = 0; i <= m; i++)
+    	{
+    		for (int j = 0; j <= n; j++)
+    		{
+    			if (i == 0 && j == 0)
+    				flag[i][j] = true;
+    			else if (i == 0)
+    			{
+    				flag[i][j] = flag[i][j-1] & (s2[j-1] == s3[j-1]);//只有当左边==1和当前两字符相同才写true
+    			}
+    			else if (j == 0)
+    			{
+    				flag[i][j] = flag[i-1][j] & (s1[i-1] == s3[i-1]);
+    			}
+    			else
+    			{
+    				flag[i][j] = (flag[i][j-1] & s2[j-1] == s3[i+j-1]) || (flag[i-1][j] & s1[i-1] == s3[i+j-1]);
+    			}
+    		}
+    	}
+    	return flag[m][n];
     }
 };
 /**int main(){
-	string s1 = "aabcc";
-	string s2 = "dbbca";
-	string s3 = "aadbbbaccc";
+	string s1 = "";
+	string s2 = "";
+	string s3 = "";
 	Solution s;
 	cout<<s.isInterleave(s1,s2,s3);
 	return 0;
 }
+
 **/
