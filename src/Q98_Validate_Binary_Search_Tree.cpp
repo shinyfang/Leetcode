@@ -14,7 +14,7 @@ public:
     bool isValidBST(TreeNode* root) {
     	if (root == NULL || (root->left == NULL && root->right == NULL))
     		return true;
-    	return isValid(root,LONG_LONG_MIN,LONG_LONG_MAX);//要考虑出现了INT_MIN和INT_MAX的情况
+    	//return isValid(root,LONG_LONG_MIN,LONG_LONG_MAX);//要考虑出现了INT_MIN和INT_MAX的情况
     }
     bool isValid(TreeNode* root, long long min, long long max)
     {

@@ -43,7 +43,7 @@ public:
     		return height[0];
     	int result = 0;
     	vector<pair<int, int> > h;
-    	h.push_back(make_pair<int, int>(height[0],0));//这里提交的时候编译错误？？
+    	//h.push_back(make_pair<int, int>(height[0],0));//这里提交的时候编译错误？？
     	//pair<int, int> temp1(height[0],0);//这样提交正确
     	//h.push_back(temp1);
     	int p = 1;
