@@ -15,7 +15,7 @@ public:
     	while (p != NULL)
     	{
     		RandomListNode* temp = new RandomListNode(p->label);
-    		p->next = temp->next;
+    		temp->next = p->next;
     		p->next = temp;
     		p = temp->next;
     	}
@@ -28,8 +28,8 @@ public:
     			p->next->random = p->random->next;
     		p = p->next->next;
     	}
-    	RandomListNode nhead(-1);
-    	RandomListNode* np = head;
+    	RandomListNode nhead(-1);//这里要加个头，否则在下面的while中容易出现将指针赋给null的next的情况
+    	RandomListNode* np = &nhead;
     	p = head;
     	while (p != NULL)
     	{
@@ -41,3 +41,12 @@ public:
     	return nhead.next;
     }
 };
+/**int main(){
+	RandomListNode * head = new RandomListNode(1);
+	//head->next = new RandomListNode(2);
+	//head->next->next = new RandomListNode(3);
+	Solution s;
+	s.copyRandomList(head);
+	return 0;
+}
+**/
