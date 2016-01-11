@@ -2,7 +2,7 @@
 #include<vector>
 #include<cmath>
 using namespace std;
-class Solution {
+/**class Solution {
 public:
     uint32_t reverseBits(uint32_t n) {
     	vector<bool> f(32,false);
@@ -20,6 +20,19 @@ public:
     	for (int k = 0; k < 32; k ++)
     		i += f[k]==true?pow(2,31-k):0;
     	return i;
+    }
+};
+**/
+class Solution {
+public:
+    uint32_t reverseBits(uint32_t n) {
+    	uint32_t r = 0;
+    	for (int i = 0; i < 32; i ++)//为什么不能直接判断n>0
+    	{
+    		r = (r << 1) | (n & 1);//每次得到原二进制的最后一位，累加到result上去
+    		n >>= 1;
+    	}
+    	return r;
     }
 };
 /**int main(){

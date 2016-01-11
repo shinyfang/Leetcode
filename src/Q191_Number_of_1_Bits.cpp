@@ -1,7 +1,7 @@
 #include<iostream>
 #include<cmath>
 using namespace std;
-class Solution {
+/**class Solution {
 public:
     int hammingWeight(uint32_t n) {
     	if (n == 0)
@@ -16,6 +16,19 @@ public:
     			n -= pow(2,i);
     		}
     		i --;
+    	}
+    	return r;
+    }
+};
+**/
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+    	int r = 0;
+    	for (int i = 0; i < 32; i ++)
+    	{
+    		r += (n & 1);
+    		n >>= 1;
     	}
     	return r;
     }
