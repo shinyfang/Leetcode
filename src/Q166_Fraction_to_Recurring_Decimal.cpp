@@ -12,8 +12,10 @@ public:
         string result;
         if (numerator < 0 ^ denominator < 0)
         	result += "-";
-        long long int n = abs(numerator);
-        long long int d = abs(denominator);
+        long long int n = numerator;//先转成longlong型的再abs，否则会出错
+        long long int d = denominator;
+        n = abs(n);
+        d = abs(d);
         result += to_string(n,d);
         n = n%d;
         if (n == 0)
