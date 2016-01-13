@@ -88,3 +88,43 @@ public:
 private:
     TrieNode* root;
 };
+
+class Solution {
+public:
+	vector<string> r;
+    vector<string> findWords(vector<vector<char> >& board, vector<string>& words) {
+    	//把要搜索的words组合成trie形式，这样搜索的时候可以使得剪枝更快
+    	if (words.size() == 0 || board.size() == 0 || board[0].size() == 0)
+    		return r;
+    	Trie trie;//类的对象
+    	for (int i = 0; i < words.size(); i ++)
+    		trie.insert(words[i]);
+    	vector<vector<bool> > f(board.size(), vector<bool>(board[0].size(),false));
+    	for (int i = 0; i < board.size(); i ++)
+    	{
+    		for (int j = 0; j < board[0].size(); j ++)
+    			dfs(board,i,j,"",trie,f);
+    	}
+    	return r;
+    }
+    void dfs(vector<vector<char> >& board, int x, int y, string res, Trie& trie, vector<vector<bool> > f)
+    //board中待比较的横纵坐标，已经比较成功的字符串res，是否用过的标记f
+    {
+    	//每次把要比较的字符加入res中，查找在trie中是否有res开头的字符串
+    	if (x < 0 || x >= board.size() || y < 0 || y >= board[0].size())
+    		return;
+    	if (f[x][y])
+    		return;
+    	res += board[x][y];
+    	if (!trie.startsWith(res))
+    		return;
+    	if (trie.search(res))
+    		r.push_back(res);
+    	f[x][y] = true;
+    	dfs(board,x-1,y,res,trie,f);
+    	dfs(board,x+1,y,res,trie,f);
+    	dfs(board,x,y-1,res,trie,f);
+    	dfs(board,x,y+1,res,trie,f);
+    	f[x][y] = false;
+    }
+};
