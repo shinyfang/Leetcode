@@ -6,7 +6,7 @@ class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
     	vector<int> out;
-    	map<int,int> map;//map记录索引，从1开始，重复取大
+    	map<int,int> map;//map璁板綍绱㈠紩锛屼粠1寮�濮嬶紝閲嶅鍙栧ぇ
     	for(int i=0;i<nums.size();i++){
     		map[nums[i]] = i+1;
     	}
@@ -36,4 +36,5 @@ public:
 		cout<<out[i]<<endl;
 	}
 	return 0;
-}**/
+}
+**/
