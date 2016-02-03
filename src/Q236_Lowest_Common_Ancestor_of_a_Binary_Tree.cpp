@@ -9,19 +9,12 @@ struct TreeNode {
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-    	if (root == NULL)
+    	if (root == NULL || root == p || root == q)
     		return root;
-    	if (p == NULL || q == NULL)
-    		return p==NULL?q:p;
-    	return lowestC(root,p,q,false,false,NULL);
-    }
-    TreeNode* lowestC(TreeNode* root, TreeNode* p, TreeNode* q, bool findp, bool findq, TreeNode* res)
-    {
-    	if (root->val == p->val && root->val == q->val)
+    	TreeNode* left = lowestCommonAncestor(root->left,p,q);
+    	TreeNode* right = lowestCommonAncestor(root->right,p,q);
+    	if (left != NULL && right != NULL)
     		return root;
-    	else if (root->val == p->val)
-    	{
-
-    	}
+    	return left==NULL?right:left;
     }
 };
